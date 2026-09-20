@@ -12,6 +12,7 @@ node_modules/
 **/coverage/
 lcov.info
 
+
 # Foundry
 contracts/broadcast/*/31337/
 contracts/deployments/31337.json
@@ -25,3 +26,6 @@ Thumbs.db
 
 # Local Anvil broadcasts (delete real-network ones only on purpose)
 contracts/broadcast/**/31337/
+branch_structure.json
+temp_auto_push.bat
+temp_interactive_push.bat
