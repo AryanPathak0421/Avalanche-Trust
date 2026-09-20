@@ -1,0 +1,23 @@
+{
+  "name": "avalanchetrust",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Trustless AVAX escrow on the Avalanche C-Chain. contracts (Foundry), frontend (Next.js), backend (metadata API).",
+  "scripts": {
+    "dev": "npm --prefix frontend run dev",
+    "build": "npm --prefix frontend run build",
+    "lint": "npm --prefix frontend run lint",
+    "typecheck": "npm --prefix frontend run typecheck && npm --prefix backend run typecheck",
+    "test": "npm --prefix frontend run test && npm --prefix backend run test",
+    "contracts:build": "cd contracts && forge build",
+    "contracts:test": "cd contracts && forge test -vv",
+    "contracts:coverage": "cd contracts && forge coverage --report summary",
+    "contracts:abi": "bash contracts/script/export-abi.sh",
+    "contracts:deploy:fuji": "cd contracts && forge script script/Deploy.s.sol:Deploy --rpc-url fuji --broadcast --verify -vvv",
+    "contracts:deploy:mainnet": "cd contracts && forge script script/Deploy.s.sol:Deploy --rpc-url avalanche --broadcast --verify -vvv"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "license": "MIT"
+}

@@ -1,0 +1,131 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --background: #f7f8fb;
+  --foreground: #0d1220;
+  --card: #ffffff;
+  --card-foreground: #0d1220;
+  --muted: #eef1f6;
+  --muted-foreground: #5b6478;
+  --border: #e1e5ee;
+  --input: #e1e5ee;
+  --ring: #e84142;
+  --primary: #e84142;
+  --primary-foreground: #ffffff;
+  --secondary: #eef1f6;
+  --secondary-foreground: #0d1220;
+  --accent: #fff1f1;
+  --accent-foreground: #b3282a;
+  --destructive: #dc2626;
+  --destructive-foreground: #ffffff;
+  --success: #15803d;
+  --success-bg: #ecfdf3;
+  --warning: #b45309;
+  --warning-bg: #fffbeb;
+  --info: #1d4ed8;
+  --info-bg: #eff6ff;
+  --radius: 0.75rem;
+}
+
+.dark {
+  --background: #0a0d14;
+  --foreground: #e9edf5;
+  --card: #10141d;
+  --card-foreground: #e9edf5;
+  --muted: #171c27;
+  --muted-foreground: #97a0b5;
+  --border: #222938;
+  --input: #2a3242;
+  --ring: #ff5b5c;
+  --primary: #f0494a;
+  --primary-foreground: #ffffff;
+  --secondary: #1a2030;
+  --secondary-foreground: #e9edf5;
+  --accent: #2a1416;
+  --accent-foreground: #ff8586;
+  --destructive: #ef4444;
+  --destructive-foreground: #ffffff;
+  --success: #4ade80;
+  --success-bg: #0d2418;
+  --warning: #fbbf24;
+  --warning-bg: #2a1f06;
+  --info: #60a5fa;
+  --info-bg: #0f1c33;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-success: var(--success);
+  --color-success-bg: var(--success-bg);
+  --color-warning: var(--warning);
+  --color-warning-bg: var(--warning-bg);
+  --color-info: var(--info);
+  --color-info-bg: var(--info-bg);
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+}
+
+* {
+  border-color: var(--border);
+}
+
+html {
+  color-scheme: light;
+}
+html.dark {
+  color-scheme: dark;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+.glass {
+  background: color-mix(in srgb, var(--card) 72%, transparent);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.hero-glow {
+  background:
+    radial-gradient(60% 50% at 20% 10%, color-mix(in srgb, var(--primary) 16%, transparent) 0%, transparent 70%),
+    radial-gradient(50% 40% at 85% 20%, color-mix(in srgb, var(--info) 14%, transparent) 0%, transparent 70%);
+}
+
+.grid-fade {
+  background-image:
+    linear-gradient(to right, color-mix(in srgb, var(--border) 60%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in srgb, var(--border) 60%, transparent) 1px, transparent 1px);
+  background-size: 40px 40px;
+  mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

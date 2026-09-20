@@ -1,0 +1,24 @@
+# Secrets — never commit
+.env
+.env.*
+!.env.example
+
+# Dependencies / build output
+node_modules/
+**/dist/
+**/.next/
+**/out/
+**/cache/
+**/coverage/
+lcov.info
+
+# Foundry
+contracts/broadcast/*/31337/
+contracts/deployments/31337.json
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.log

@@ -1,0 +1,89 @@
+// AvalancheTrust off-chain metadata store.
+// The blockchain is the ONLY source of truth for escrow status, amounts, parties, funding,
+// completion, refunds and dispute resolution. Nothing here can move funds.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String         @id @default(cuid())
+  walletAddress String         @unique
+  displayName   String?
+  email         String?
+  createdAt     DateTime       @default(now())
+  notifications Notification[]
+}
+
+/// Full text behind an on-chain bytes32 hash. Verified on write: keccak256(payload) must equal `hash`.
+model Document {
+  id        String   @id @default(cuid())
+  chainId   Int
+  hash      String
+  kind      String   // agreement | work | dispute
+  payload   Json
+  fileName  String?
+  fileHash  String?
+  createdAt DateTime @default(now())
+
+  @@unique([chainId, hash])
+  @@index([chainId, kind])
+}
+
+/// Descriptive metadata about an escrow (title, tags) keyed by chain + on-chain id.
+model EscrowMetadata {
+  id            String   @id @default(cuid())
+  chainId       Int
+  escrowId      String
+  agreementHash String
+  title         String?
+  createdTxHash String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@unique([chainId, escrowId])
+}
+
+model DisputeMetadata {
+  id         String   @id @default(cuid())
+  chainId    Int
+  escrowId   String
+  reasonHash String
+  raisedBy   String
+  notes      String?
+  createdAt  DateTime @default(now())
+
+  @@unique([chainId, escrowId, reasonHash])
+}
+
+model Notification {
+  id        String   @id @default(cuid())
+  user      User     @relation(fields: [userId], references: [id])
+  userId    String
+  chainId   Int
+  escrowId  String
+  event     String
+  txHash    String
+  message   String
+  read      Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  @@index([userId, read])
+  @@unique([txHash, event, userId])
+}
+
+/// Tracks the last block processed by the event indexer per chain/contract.
+model IndexerCursor {
+  id        String   @id @default(cuid())
+  chainId   Int
+  contract  String
+  lastBlock BigInt
+  updatedAt DateTime @updatedAt
+
+  @@unique([chainId, contract])
+}
