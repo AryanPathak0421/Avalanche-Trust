@@ -22,3 +22,6 @@ Thumbs.db
 .idea/
 .vscode/
 *.log
+
+# Local Anvil broadcasts (delete real-network ones only on purpose)
+contracts/broadcast/**/31337/
