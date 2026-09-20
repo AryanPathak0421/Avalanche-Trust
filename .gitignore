@@ -12,6 +12,7 @@ node_modules/
 **/coverage/
 lcov.info
 
+
 # Foundry
 contracts/broadcast/*/31337/
 contracts/deployments/31337.json
