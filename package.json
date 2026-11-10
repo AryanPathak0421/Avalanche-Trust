@@ -4,8 +4,8 @@
   "private": true,
   "description": "Trustless AVAX escrow on the Avalanche C-Chain. contracts (Foundry), frontend (Next.js), backend (metadata API).",
   "scripts": {
-    "dev": "npm --prefix frontend run dev",
-    "build": "npm --prefix frontend run build",
+    "dev": "node init && npm --prefix frontend run dev",
+    "build": "node init && npm --prefix frontend run build",
     "lint": "npm --prefix frontend run lint",
     "typecheck": "npm --prefix frontend run typecheck && npm --prefix backend run typecheck",
     "test": "npm --prefix frontend run test && npm --prefix backend run test",
