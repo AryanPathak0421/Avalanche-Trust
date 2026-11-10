@@ -1,6 +1,4 @@
 # Secrets — never commit
-.env
-.env.*
 !.env.example
 
 # Dependencies / build output
@@ -21,7 +19,6 @@ contracts/deployments/31337.json
 .DS_Store
 Thumbs.db
 .idea/
-.vscode/
 *.log
 
 # Local Anvil broadcasts (delete real-network ones only on purpose)
@@ -29,3 +26,4 @@ contracts/broadcast/**/31337/
 branch_structure.json
 temp_auto_push.bat
 temp_interactive_push.bat
+config.bat
